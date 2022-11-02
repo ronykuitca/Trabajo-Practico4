@@ -1,0 +1,432 @@
+db.productos.insertMany([{nombre: 'Mesa',descripcion:'Exterior',stock:25,precio:250},{nombre: 'Mouse',descripcion:'Inalambrico',stock:40,precio:30},{nombre: 'TV',descripcion:'LED',stock:16,precio:350},{nombre: 'Teclado',descripcion:'Mecanico',stock:25,precio:40},{nombre:'Computadora',descripcion:'Portatil',stock:12,precio:180}])
+
+db.usuarios.insertMany([{nombre:'Ana',apellido:'Gonzalez',edad:55,email:'ana@mail'},{nombre:'Jorge',apellido:'Martinez',edad:32,email:'jorge@mail'},{nombre:'Claudia',apellido:'Perez',edad:22,email:'claudia@mail'},{nombre:'Pablo',apellido:'Morales',edad:40,email:'pablo@mail'}])
+
+db.usuarios.insertOne({nombre: 'Juan',apellido:'Mamani',edad: 23,email:'juan@mail'})
+
+db.usuarios.find().sort({edad:1})
+
+db.productos.find().sort({stock:-1})
+
+db.producto.find().sort({precio:-1}).limit(1)
+
+db.clientes.find({}, {roll:1, _id:0})
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+C:\Program Files (x86)\cmder(master)
+λ mongosh
+Current Mongosh Log ID: 6359c5ee6d653690a1d3a681
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.6.0
+Using MongoDB:          6.0.2
+Using Mongosh:          1.6.0
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2022-10-26T20:42:22.499-03:00: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+   2022-10-26T20:42:22.500-03:00: This server is bound to localhost. Remote systems will be unable to connect to this server. Start the server with --bind_ip <address> to specify which IP addresses it should serve responses from, or with --bind_ip_all to bind to all interfaces. If this behavior is desired, start the server with --bind_ip 127.0.0.1 to disable this warning
+------
+
+------
+   Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+   metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+   The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+   and anyone you share the URL with. MongoDB may use this information to make product
+   improvements and to suggest MongoDB products and deployment options to you.
+
+   To enable free monitoring, run the following command: db.enableFreeMonitoring()
+   To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+------
+
+test> use empresa
+switched to db empresa
+empresa> db.usuarios.find()
+
+empresa> db.usuarios.insertMany([{nombre:'Ana',apellido:'Gonzalez',edad:55,email:'ana@mail'},{nombre:'Jorge',apellido:'Martinez',edad:32,email:'jorge@mail'},{nombre:'Claudia',apellido:'Perez',edad:22,email:'claudia@mail'},{nombre:'Pablo',apellido:'Morales',edad:40,email:'pablo@mail'}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("6359c6f5141e9e1fb97f18f4"),
+    '1': ObjectId("6359c6f5141e9e1fb97f18f5"),
+    '2': ObjectId("6359c6f5141e9e1fb97f18f6"),
+    '3': ObjectId("6359c6f5141e9e1fb97f18f7")
+  }
+}
+empresa> db.productos.insertMany([{nombre: 'Mesa',descripcion:'Exterior',stock:25,precio:250},{nombre: 'Mouse',descripcion:'Inalambrico',stock:40,precio:30},{nombre: 'TV',descripcion:'LED',stock:16,precio:350},{nombre: 'Teclado',descripcion:'Mecanico',stock:25,precio:40},{nombre:'Computadora',descripcion:'Portatil',stock:12,precio:180}])
+{
+  acknowledged: true,
+  insertedIds: {
+    '0': ObjectId("6359c702141e9e1fb97f18f8"),
+    '1': ObjectId("6359c702141e9e1fb97f18f9"),
+    '2': ObjectId("6359c702141e9e1fb97f18fa"),
+    '3': ObjectId("6359c702141e9e1fb97f18fb"),
+    '4': ObjectId("6359c702141e9e1fb97f18fc")
+  }
+}
+empresa> db.productos.deleteOne({nombre: 'Mesa'})
+{ acknowledged: true, deletedCount: 1 }
+empresa> db.usuarios.insertOne({nombre: 'Juan',apellido:'Mamani',edad: 23,email:'juan@mail'})
+{
+  acknowledged: true,
+  insertedId: ObjectId("6359c762141e9e1fb97f18fd")
+}
+empresa> show collections
+productos
+usuarios
+empresa> db.usuaros.find()
+
+empresa> db.usuarios.find()
+[
+  {
+    _id: ObjectId("6359c6f5141e9e1fb97f18f4"),
+    nombre: 'Ana',
+    apellido: 'Gonzalez',
+    edad: 55,
+    email: 'ana@mail'
+  },
+  {
+    _id: ObjectId("6359c6f5141e9e1fb97f18f5"),
+    nombre: 'Jorge',
+    apellido: 'Martinez',
+    edad: 32,
+    email: 'jorge@mail'
+  },
+  {
+    _id: ObjectId("6359c6f5141e9e1fb97f18f6"),
+    nombre: 'Claudia',
+    apellido: 'Perez',
+    edad: 22,
+    email: 'claudia@mail'
+  },
+  {
+    _id: ObjectId("6359c6f5141e9e1fb97f18f7"),
+    nombre: 'Pablo',
+    apellido: 'Morales',
+    edad: 40,
+    email: 'pablo@mail'
+  },
+  {
+    _id: ObjectId("6359c762141e9e1fb97f18fd"),
+    nombre: 'Juan',
+    apellido: 'Mamani',
+    edad: 23,
+    email: 'juan@mail'
+  }
+]
+empresa> db.productos.find()
+[
+  {
+    _id: ObjectId("6359c702141e9e1fb97f18f9"),
+    nombre: 'Mouse',
+    descripcion: 'Inalambrico',
+    stock: 40,
+    precio: 30
+  },
+  {
+    _id: ObjectId("6359c702141e9e1fb97f18fa"),
+    nombre: 'TV',
+    descripcion: 'LED',
+    stock: 16,
+    precio: 350
+  },
+  {
+    _id: ObjectId("6359c702141e9e1fb97f18fb"),
+    nombre: 'Teclado',
+    descripcion: 'Mecanico',
+    stock: 25,
+    precio: 40
+  },
+  {
+    _id: ObjectId("6359c702141e9e1fb97f18fc"),
+    nombre: 'Computadora',
+    descripcion: 'Portatil',
+    stock: 12,
+    precio: 180
+  }
+]
+empresa> db.usuarios.count()
+DeprecationWarning: Collection.count() is deprecated. Use countDocuments or estimatedDocumentCount.
+5
+empresa> db.productos.count()
+4
+empresa> db.usuarios.find().sort({edad:1})
+[
+  {
+    _id: ObjectId("6359c6f5141e9e1fb97f18f6"),
+    nombre: 'Claudia',
+    apellido: 'Perez',
+    edad: 22,
+    email: 'claudia@mail'
+  },
+  {
+    _id: ObjectId("6359c762141e9e1fb97f18fd"),
+    nombre: 'Juan',
+    apellido: 'Mamani',
+    edad: 23,
+    email: 'juan@mail'
+  },
+  {
+    _id: ObjectId("6359c6f5141e9e1fb97f18f5"),
+    nombre: 'Jorge',
+    apellido: 'Martinez',
+    edad: 32,
+    email: 'jorge@mail'
+  },
+  {
+    _id: ObjectId("6359c6f5141e9e1fb97f18f7"),
+    nombre: 'Pablo',
+    apellido: 'Morales',
+    edad: 40,
+    email: 'pablo@mail'
+  },
+  {
+    _id: ObjectId("6359c6f5141e9e1fb97f18f4"),
+    nombre: 'Ana',
+    apellido: 'Gonzalez',
+    edad: 55,
+    email: 'ana@mail'
+  }
+]
+empresa> db.productos.find().sort({stock:-1})
+[
+  {
+    _id: ObjectId("6359c702141e9e1fb97f18f9"),
+    nombre: 'Mouse',
+    descripcion: 'Inalambrico',
+    stock: 40,
+    precio: 30
+  },
+  {
+    _id: ObjectId("6359c702141e9e1fb97f18fb"),
+    nombre: 'Teclado',
+    descripcion: 'Mecanico',
+    stock: 25,
+    precio: 40
+  },
+  {
+    _id: ObjectId("6359c702141e9e1fb97f18fa"),
+    nombre: 'TV',
+    descripcion: 'LED',
+    stock: 16,
+    precio: 350
+  },
+  {
+    _id: ObjectId("6359c702141e9e1fb97f18fc"),
+    nombre: 'Computadora',
+    descripcion: 'Portatil',
+    stock: 12,
+    precio: 180
+  }
+]
+empresa> db.producto.find().sort({precio:-1}).limit(1)
+
+empresa> db.productos.find().sort({precio:-1}).limit(1)
+[
+  {
+    _id: ObjectId("6359c702141e9e1fb97f18fa"),
+    nombre: 'TV',
+    descripcion: 'LED',
+    stock: 16,
+    precio: 350
+  }
+]
+empresa>db.usuarios.find().sort({nombre:1})
+db.usuarios.find().limit(2).sort({nombre:1})
+
+db.usuarios.deleteOne({nombre: 'Jorge'})
+
+
+
+db.productos.find({stock: {$gte:21,$lte:51}},{nombre: 1,precio:1,_id:0}).sort({stock:1,nombre: -1})
+
+db.productos.find({stock: {$gte:21,$lte:51}},{nombre: 1,precio:1,_id:0}).sort({precio:1})
+
+db.productos.find().sort({precio:1})
+
+///////////////////////////////////////////
+
+
+C:\Program Files (x86)\cmder(master)
+λ mongosh
+Current Mongosh Log ID: 635acc5508335b1924b2cbc4
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.6.0
+Using MongoDB:          6.0.2
+Using Mongosh:          1.6.0
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2022-10-27T15:21:56.364-03:00: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+   2022-10-27T15:21:56.364-03:00: This server is bound to localhost. Remote systems will be unable to connect to this server. Start the server with --bind_ip <address> to specify which IP addresses it should serve responses from, or with --bind_ip_all to bind to all interfaces. If this behavior is desired, start the server with --bind_ip 127.0.0.1 to disable this warning
+------
+
+------
+   Enable MongoDB's free cloud-based monitoring service, which will then receive and display
+   metrics about your deployment (disk utilization, CPU, operation statistics, etc).
+
+   The monitoring data will be available on a MongoDB website with a unique URL accessible to you
+   and anyone you share the URL with. MongoDB may use this information to make product
+   improvements and to suggest MongoDB products and deployment options to you.
+
+   To enable free monitoring, run the following command: db.enableFreeMonitoring()
+   To permanently disable this reminder, run the following command: db.disableFreeMonitoring()
+------
+
+test> use empresa
+switched to db empresa
+empresa> db.usuarios.find()
+[
+  {
+    _id: ObjectId("6359c6f5141e9e1fb97f18f4"),
+    nombre: 'Ana',
+    apellido: 'Gonzalez',
+    edad: 55,
+    email: 'ana@mail'
+  },
+  {
+    _id: ObjectId("6359c6f5141e9e1fb97f18f5"),
+    nombre: 'Jorge',
+    apellido: 'Martinez',
+    edad: 32,
+    email: 'jorge@mail'
+  },
+  {
+    _id: ObjectId("6359c6f5141e9e1fb97f18f6"),
+    nombre: 'Claudia',
+    apellido: 'Perez',
+    edad: 22,
+    email: 'claudia@mail'
+  },
+  {
+    _id: ObjectId("6359c6f5141e9e1fb97f18f7"),
+    nombre: 'Pablo',
+    apellido: 'Morales',
+    edad: 40,
+    email: 'pablo@mail'
+  },
+  {
+    _id: ObjectId("6359c762141e9e1fb97f18fd"),
+    nombre: 'Juan',
+    apellido: 'Mamani',
+    edad: 23,
+    email: 'juan@mail'
+  }
+]
+empresa> db.usuarios.find().limit(2)
+[
+  {
+    _id: ObjectId("6359c6f5141e9e1fb97f18f4"),
+    nombre: 'Ana',
+    apellido: 'Gonzalez',
+    edad: 55,
+    email: 'ana@mail'
+  },
+  {
+    _id: ObjectId("6359c6f5141e9e1fb97f18f5"),
+    nombre: 'Jorge',
+    apellido: 'Martinez',
+    edad: 32,
+    email: 'jorge@mail'
+  }
+]
+empresa> db.usuarios.find().limit(2).sort({nombre:1})
+[
+  {
+    _id: ObjectId("6359c6f5141e9e1fb97f18f4"),
+    nombre: 'Ana',
+    apellido: 'Gonzalez',
+    edad: 55,
+    email: 'ana@mail'
+  },
+  {
+    _id: ObjectId("6359c6f5141e9e1fb97f18f6"),
+    nombre: 'Claudia',
+    apellido: 'Perez',
+    edad: 22,
+    email: 'claudia@mail'
+  }
+]
+empresa> db.productos.find()
+[
+  {
+    _id: ObjectId("6359c702141e9e1fb97f18f9"),
+    nombre: 'Mouse',
+    descripcion: 'Inalambrico',
+    stock: 40,
+    precio: 30
+  },
+  {
+    _id: ObjectId("6359c702141e9e1fb97f18fa"),
+    nombre: 'TV',
+    descripcion: 'LED',
+    stock: 16,
+    precio: 350
+  },
+  {
+    _id: ObjectId("6359c702141e9e1fb97f18fb"),
+    nombre: 'Teclado',
+    descripcion: 'Mecanico',
+    stock: 25,
+    precio: 40
+  },
+  {
+    _id: ObjectId("6359c702141e9e1fb97f18fc"),
+    nombre: 'Computadora',
+    descripcion: 'Portatil',
+    stock: 12,
+    precio: 180
+  }
+]
+empresa> db.productos.updateOne({nombre:'TV'},{$set: {precio: 390}})
+{
+  acknowledged: true,
+  insertedId: null,
+  matchedCount: 1,
+  modifiedCount: 1,
+  upsertedCount: 0
+}
+empresa> db.usuarios.deleteOne({nombre: 'Jorge'})
+{ acknowledged: true, deletedCount: 1 }
+
+
+empresa> db.productos.aggregate( [ { $project : { nombre : 1 , precio : 1, _id:0 } } ] ).sort({precio:1})
+[
+  { nombre: 'Mouse', precio: 30 },
+  { nombre: 'Teclado', precio: 40 },
+  { nombre: 'Computadora', precio: 180 },
+  { nombre: 'TV', precio: 390 }
+]
+
+
+empresa> db.usuarios.aggregate( [ { $project : { nombre : 1 , email : 1, _id:0 } } ] )
+[
+  { nombre: 'Ana', email: 'ana@mail' },
+  { nombre: 'Claudia', email: 'claudia@mail' },
+  { nombre: 'Pablo', email: 'pablo@mail' },
+  { nombre: 'Juan', email: 'juan@mail' }
+]
